@@ -1,4 +1,4 @@
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, User } from "lucide-react";
 import { NuvendeLogo } from "@/components/app-logo";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { Button } from "../ui/button";
@@ -33,10 +33,16 @@ export default function Header() {
           </div>
         </div>
 
-        <div className="flex items-center gap-4">
-          <Button className="cursor-pointer rounded-full" variant="ghost">
-            <ShoppingCart className="size-4" />
-          </Button>
+        <div className="flex items-center gap-2">
+          <div>
+            <Button className="cursor-pointer rounded-full" variant="ghost">
+              <ShoppingCart className="size-4" />
+            </Button>
+
+            <Button className="cursor-pointer rounded-full" variant="ghost">
+              <User className="size-4" />
+            </Button>
+          </div>
 
           <Avatar>
             <AvatarFallback className="text-xs">HM</AvatarFallback>

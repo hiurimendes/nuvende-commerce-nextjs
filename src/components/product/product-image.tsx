@@ -12,7 +12,13 @@ export default function ProductImage() {
 
   return (
     <div className="flex flex-col gap-4">
-      <Image alt="Boné Nuvende" height={500} src={selectedImage} width={500} />
+      <Image
+        alt="Boné Nuvende"
+        height={500}
+        quality={100}
+        src={selectedImage}
+        width={500}
+      />
 
       <div className="flex gap-4">
         {images.map((image) => (
