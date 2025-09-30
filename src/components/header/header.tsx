@@ -1,10 +1,14 @@
 import { ShoppingCart, User } from "lucide-react";
-import { NuvendeLogo } from "@/components/app-logo";
-import { Avatar, AvatarFallback } from "../ui/avatar";
+import { auth } from "@/auth";
+import { NuvendeLogo } from "@/components/icons/app-logo";
+import SignIn from "../auth/sign-in";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 
-export default function Header() {
+export default async function Header() {
+  const session = await auth();
+
   return (
     <header className="flex w-full flex-col items-center gap-4 py-8">
       <div className="flex w-full items-center justify-between">
@@ -33,21 +37,29 @@ export default function Header() {
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
-          <div>
-            <Button className="cursor-pointer rounded-full" variant="ghost">
-              <ShoppingCart className="size-4" />
-            </Button>
+        {session?.user ? (
+          <div className="flex items-center gap-2">
+            <div>
+              <Button className="cursor-pointer rounded-full" variant="ghost">
+                <ShoppingCart className="size-4" />
+              </Button>
 
-            <Button className="cursor-pointer rounded-full" variant="ghost">
-              <User className="size-4" />
-            </Button>
+              <Button className="cursor-pointer rounded-full" variant="ghost">
+                <User className="size-4" />
+              </Button>
+            </div>
+
+            <Avatar>
+              <AvatarFallback className="text-xs">HM</AvatarFallback>
+              <AvatarImage
+                alt={session.user.name || "Avatar"}
+                src={session.user.image || undefined}
+              />
+            </Avatar>
           </div>
-
-          <Avatar>
-            <AvatarFallback className="text-xs">HM</AvatarFallback>
-          </Avatar>
-        </div>
+        ) : (
+          <SignIn />
+        )}
       </div>
 
       <Separator />
