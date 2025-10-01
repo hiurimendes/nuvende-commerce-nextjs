@@ -1,5 +1,4 @@
-import { LucideShoppingBag } from "lucide-react";
-import { Button } from "../ui/button";
+import { ProductBuyButton } from "./product-buy-button";
 
 export default function ProductDetails() {
   return (
@@ -26,10 +25,7 @@ export default function ProductDetails() {
         </h3>
       </div>
       <div className="">
-        <Button className="w-full cursor-pointer bg-emerald-900 py-6 hover:bg-emerald-800">
-          <LucideShoppingBag />
-          <span className="font-medium text-lg">Comprar</span>
-        </Button>
+        <ProductBuyButton />
       </div>
     </div>
   );

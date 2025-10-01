@@ -1,5 +1,5 @@
 import { ShoppingCart, User } from "lucide-react";
-import { auth } from "@/auth";
+import { auth, signOut } from "@/auth";
 import { NuvendeLogo } from "@/components/icons/app-logo";
 import SignIn from "../auth/sign-in";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
@@ -14,7 +14,7 @@ export default async function Header() {
       <div className="flex w-full items-center justify-between">
         <div className="flex items-baseline gap-12">
           <div className="flex items-baseline">
-            <NuvendeLogo className="h-5" />
+            <NuvendeLogo isLink props={{ className: "h-5" }} />
             <h2 className="font-semibold text-emerald-900">.shop</h2>
           </div>
 
@@ -44,18 +44,31 @@ export default async function Header() {
                 <ShoppingCart className="size-4" />
               </Button>
 
-              <Button className="cursor-pointer rounded-full" variant="ghost">
-                <User className="size-4" />
-              </Button>
+              <form
+                action={async () => {
+                  "use server";
+                  await signOut();
+                }}
+                className="inline"
+              >
+                <Button className="cursor-pointer rounded-full" variant="ghost">
+                  <User className="size-4" />
+                </Button>
+              </form>
             </div>
 
-            <Avatar>
-              <AvatarFallback className="text-xs">HM</AvatarFallback>
-              <AvatarImage
-                alt={session.user.name || "Avatar"}
-                src={session.user.image || undefined}
-              />
-            </Avatar>
+            {session.user.image && (
+              <Avatar>
+                <AvatarImage
+                  alt={session.user.name || "Avatar"}
+                  src={session.user.image}
+                />
+
+                <AvatarFallback className="text-xs">
+                  {session.user.name?.charAt(0).toUpperCase() || "?"}
+                </AvatarFallback>
+              </Avatar>
+            )}
           </div>
         ) : (
           <SignIn />
