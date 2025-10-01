@@ -2,8 +2,7 @@ import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
-import { NuvendeLogo } from "@/components/icons/app-logo";
-import { Button } from "@/components/ui/button";
+import { CheckoutForm } from "@/components/checkout/checkout-form";
 
 export default async function CheckoutPage() {
   const session = await auth();
@@ -65,17 +64,9 @@ export default async function CheckoutPage() {
           <p className="">Total</p>
           <span className="font-semibold">R$ 92,20</span>
         </div>
-
-        <div className="mt-36 flex items-center justify-center">
-          <Button className="w-full max-w-[480px] cursor-pointer bg-emerald-950 hover:bg-emerald-900">
-            Finalizar compra
-          </Button>
-        </div>
       </div>
 
-      <div className="flex flex-1 items-center justify-center bg-emerald-900">
-        <NuvendeLogo color="white" props={{ className: "size-48" }} />
-      </div>
+      <CheckoutForm defaultName={session.user.name || ""} />
     </div>
   );
 }
