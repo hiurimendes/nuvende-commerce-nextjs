@@ -13,11 +13,11 @@ export default async function LoginPage() {
   }
 
   return (
-    <div className="flex">
+    <div className="flex h-full">
       <div className="hidden md:block md:w-1/2">
         <Image
           alt="CAP Banner"
-          className="aspect-square object-cover"
+          className="h-full object-cover"
           height={512}
           quality={100}
           src="/cap/cap-banner.png"
@@ -25,21 +25,21 @@ export default async function LoginPage() {
         />
       </div>
 
-      <div className="flex w-full flex-col items-start justify-end bg-emerald-600 p-8 md:w-1/2">
+      <div className="flex w-full flex-col items-start justify-end bg-emerald-600 p-6 md:w-1/2 md:p-8">
         <div className="flex-1">
-          <NuvendeLogo color="white" props={{ className: "h-8" }} />
+          <NuvendeLogo color="white" props={{ className: "h-6 md:h-8" }} />
         </div>
 
         <div>
-          <h1 className="font-bold text-5xl text-white">Entrar</h1>
-          <h2 className="text-lg text-muted">
+          <h1 className="font-bold text-4xl text-white md:text-5xl">Entrar</h1>
+          <h2 className="text-base text-muted md:text-lg">
             acesse a sua conta para continuar com o seu pedido.
           </h2>
         </div>
 
         <Separator className="mt-4" />
 
-        <div className="max-w-sm pt-4">
+        <div className="w-full max-w-sm pt-4">
           <SignIn className="w-full" isFullWidth />
         </div>
       </div>

@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/style/useNamingConvention: Variables */
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -63,40 +64,32 @@ export function CheckoutForm({ defaultName }: CheckoutFormProps) {
     },
   });
 
-  const onSubmit = (data: CheckoutFormData) => {
-    // Aqui você implementaria a lógica para processar o pedido
-    // Por exemplo: enviar para uma API, processar pagamento, etc.
-    // Dados do formulário estão disponíveis em 'data'
-
-    // Exemplo de como os dados seriam processados:
-    // await processOrder(data);
-    // await sendToAPI(data);
-
-    // Por enquanto, apenas validamos que os dados estão corretos
-    const isValidData =
-      data.fullName && data.phone && data.city && data.address;
-    if (isValidData) {
-      // Redirecionar para página de sucesso ou processar pagamento
-    }
+  const onSubmit = async (_: CheckoutFormData) => {
+    // Aqui você pode adicionar a lógica para enviar os dados do formulário
   };
 
   return (
-    <div className="flex flex-1 flex-col items-center justify-center bg-emerald-900">
-      <NuvendeLogo color="white" props={{ className: "size-24" }} />
+    <div className="flex flex-1 flex-col items-center justify-center py-8 md:bg-emerald-900 md:px-0 md:py-0">
+      <NuvendeLogo
+        color="white"
+        props={{ className: "hidden md:flex size-16 md:size-24" }}
+      />
 
-      <div className="mb-6 w-full max-w-[320px] border-white/10 border-b pb-4">
-        <h2 className="font-semibold text-2xl text-white">Entrega</h2>
+      <div className="mb-4 w-full border-b pb-3 md:mb-6 md:max-w-[320px] md:border-white/10 md:pb-4">
+        <h2 className="font-semibold text-xl md:text-2xl md:text-white">
+          Entrega
+        </h2>
       </div>
 
       <form
-        className="flex w-full max-w-[320px] flex-col gap-4"
+        className="flex w-full flex-col gap-3 md:max-w-[320px] md:gap-4"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="grid w-full gap-2">
-          <Label className="text-muted">Nome completo</Label>
+          <Label className="md:text-muted">Nome completo</Label>
           <Input
             {...register("fullName")}
-            className={`bg-emerald-950 text-white placeholder:text-muted/60 ${
+            className={`md:bg-emerald-950 md:text-white md:placeholder:text-muted/60 ${
               errors.fullName ? "border-red-500" : ""
             }`}
             placeholder="Digite seu nome completo"
@@ -109,10 +102,10 @@ export function CheckoutForm({ defaultName }: CheckoutFormProps) {
         </div>
 
         <div className="grid w-full gap-2">
-          <Label className="text-muted">Número de telefone</Label>
+          <Label className="md:text-muted">Número de telefone</Label>
           <Input
             {...register("phone")}
-            className={`bg-emerald-950 text-white placeholder:text-muted/60 ${
+            className={`md:bg-emerald-950 md:text-white md:placeholder:text-muted/60 ${
               errors.phone ? "border-red-500" : ""
             }`}
             placeholder="Digite seu número de telefone"
@@ -123,11 +116,11 @@ export function CheckoutForm({ defaultName }: CheckoutFormProps) {
           )}
         </div>
 
-        <div className="grid w-full max-w-[320px] gap-2">
-          <Label className="text-muted">Cidade</Label>
+        <div className="grid w-full gap-2">
+          <Label className="md:text-muted">Cidade</Label>
           <Input
             {...register("city")}
-            className={`bg-emerald-950 text-white placeholder:text-muted/60 ${
+            className={`md:bg-emerald-950 md:text-white md:placeholder:text-muted/60 ${
               errors.city ? "border-red-500" : ""
             }`}
             placeholder="Digite sua cidade"
@@ -137,11 +130,11 @@ export function CheckoutForm({ defaultName }: CheckoutFormProps) {
           )}
         </div>
 
-        <div className="grid w-full max-w-[320px] gap-2">
-          <Label className="text-muted">Endereço</Label>
+        <div className="grid w-full gap-2">
+          <Label className="md:text-muted">Endereço</Label>
           <Input
             {...register("address")}
-            className={`bg-emerald-950 text-white placeholder:text-muted/60 ${
+            className={`md:bg-emerald-950 md:text-white md:placeholder:text-muted/60 ${
               errors.address ? "border-red-500" : ""
             }`}
             placeholder="Digite seu endereço"
@@ -153,7 +146,7 @@ export function CheckoutForm({ defaultName }: CheckoutFormProps) {
           )}
         </div>
 
-        <div className="mt-4 flex w-full max-w-[320px] items-center justify-center border-white/10 border-t pt-4">
+        <div className="mt-4 flex w-full items-center justify-center border-white/10 border-t pt-4">
           <Button
             className="w-full cursor-pointer bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50"
             disabled={isSubmitting}

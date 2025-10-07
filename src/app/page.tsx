@@ -3,7 +3,7 @@ import ProductImage from "@/components/product/product-image";
 
 export default function Home() {
   return (
-    <div className="flex gap-16">
+    <div className="flex flex-col gap-8 md:flex-row md:gap-16">
       <ProductImage />
       <ProductDetails />
     </div>

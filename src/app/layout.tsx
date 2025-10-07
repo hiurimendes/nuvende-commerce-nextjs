@@ -31,7 +31,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AuthSessionProvider>
-          <div className="mx-4 flex h-screen max-w-[1200px] flex-1 flex-col items-center justify-between lg:mx-auto">
+          <div className="mx-3 flex h-screen max-w-[1200px] flex-1 flex-col items-center justify-between md:mx-4 lg:mx-auto lg:px-4">
             <Header />
             {children}
             <Footer />

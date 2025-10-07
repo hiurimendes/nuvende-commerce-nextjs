@@ -10,15 +10,17 @@ export default async function Header() {
   const session = await auth();
 
   return (
-    <header className="flex w-full flex-col items-center gap-4 py-8">
+    <header className="flex w-full flex-col items-center gap-4 py-4 md:py-8">
       <div className="flex w-full items-center justify-between">
-        <div className="flex items-baseline gap-12">
+        <div className="flex items-baseline gap-6 md:gap-12">
           <div className="flex items-baseline">
-            <NuvendeLogo isLink props={{ className: "h-5" }} />
-            <h2 className="font-semibold text-emerald-900">.shop</h2>
+            <NuvendeLogo isLink props={{ className: "h-4 md:h-5" }} />
+            <h2 className="font-semibold text-emerald-900 text-sm md:text-base">
+              .shop
+            </h2>
           </div>
 
-          <div className="flex gap-6">
+          <div className="hidden gap-6 md:flex">
             <h2 className="group cursor-pointer font-sans text-muted-foreground text-sm hover:text-emerald-900 hover:underline">
               hot <span className="text-rose-500">🔥</span>
             </h2>
@@ -38,9 +40,13 @@ export default async function Header() {
         </div>
 
         {session?.user ? (
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 md:gap-2">
             <div>
-              <Button className="cursor-pointer rounded-full" variant="ghost">
+              <Button
+                className="cursor-pointer rounded-full"
+                size="sm"
+                variant="ghost"
+              >
                 <ShoppingCart className="size-4" />
               </Button>
 
@@ -51,14 +57,18 @@ export default async function Header() {
                 }}
                 className="inline"
               >
-                <Button className="cursor-pointer rounded-full" variant="ghost">
+                <Button
+                  className="cursor-pointer rounded-full"
+                  size="sm"
+                  variant="ghost"
+                >
                   <User className="size-4" />
                 </Button>
               </form>
             </div>
 
             {session.user.image && (
-              <Avatar>
+              <Avatar className="size-8 md:size-10">
                 <AvatarImage
                   alt={session.user.name || "Avatar"}
                   src={session.user.image}
